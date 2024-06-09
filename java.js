@@ -15,6 +15,7 @@ const winPatterns = [
     [0,4,8],
     [2,4,6]
 ];
+let count = 0;
 boxes.forEach((box) =>{
     box.addEventListener("click", () =>{
         if(turnO){
@@ -26,6 +27,7 @@ boxes.forEach((box) =>{
             turnO = true;
         }
         box.disabled = true;
+        count++;
         checkWinner();
     });
 });
@@ -40,6 +42,7 @@ const enableBoxes = () => {
         box.disabled = false;
         box.innerText = "";
     }
+    count = 0;
 }
 const showWinner = (winner) =>{
     msg.innerText = `Congratulations!!! Winner is ${winner}`;
@@ -53,12 +56,15 @@ const checkWinner = () => {
         let pos3 = boxes[pattern[2]].innerText;
 
         if(pos1 != "" && pos2 != "" && pos3 != ""){
-        if(pos1 === pos2 && pos2 === pos3){
+        if(pos1 === pos2 && pos1 === pos3){
             showWinner(pos1);
         }
+        }
+    }
+    if(count === 9){
+        gameDraw();
     }
     }
-    };
     
     const resetGame = () => {
         turnO = true;
@@ -68,9 +74,11 @@ const checkWinner = () => {
 
     newGame.addEventListener("click",resetGame);
     resetbtn.addEventListener("click",resetGame);
-
-
-
-
+    //Draw Logic
+    const gameDraw = () =>{
+        msg.innerText = "Game Draw!!";
+        msgContainer.classList.remove("hide");
+        disableboxes();
+    }
 
 
