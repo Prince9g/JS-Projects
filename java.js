@@ -2,7 +2,6 @@ let boxes = document.querySelectorAll(".box");
 let resetbtn = document.querySelector("#reset");
 let newGame = document.querySelector("#new");
 let msgContainer = document.querySelector(".msg-container");
-let msgCounter = document.querySelector("msg-counter")
 let msg = document.querySelector("#msg");
 let turnO = true;//we have two players O and X
 
@@ -57,9 +56,6 @@ const checkWinner = () => {
         if(pos1 === pos2 && pos2 === pos3){
             showWinner(pos1);
         }
-    }
-    else{
-        drawGame();
     }
     }
     };
